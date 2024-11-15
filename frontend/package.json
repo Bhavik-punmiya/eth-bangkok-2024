@@ -12,6 +12,7 @@
     "@coinbase/onchainkit": "^0.33.6",
     "@coinbase/wallet-sdk": "^4.1.0",
     "@hashgraph/sdk": "^2.50.0",
+    "@monaco-editor/react": "^4.6.0",
     "@nextui-org/modal": "^2.0.41",
     "@nextui-org/react": "^2.4.6",
     "@solidity-parser/parser": "^0.18.0",
@@ -44,8 +45,8 @@
     "web3": "^4.12.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/node": "20.17.6",
+    "@types/react": "18.3.12",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",

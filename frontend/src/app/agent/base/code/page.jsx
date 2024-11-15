@@ -14,6 +14,9 @@ import ContractInteraction from "@/components/ContractInteractions";
 import {PRIVATE_KEY} from "@/utils/config";
 import ConstructorArgsModal from "@/components/ConstructorArgsModal";
 import SecondaryNavbar from "@/components/SecondaryNavbar";
+import {deployContract} from "@/contracts";
+import { CHAIN_CONFIGS } from '@/utils/chains';
+
 
 export default function Editor() {
     const {
@@ -91,108 +94,81 @@ export default function Editor() {
         }
     };
 
-    const DeployContract = async ({constructorArgs}) => {
-        console.log("Deploying contract...");
-        setIsModalOpen(false);
-        try {
-            setIsDeploying(true);
 
-            // Create provider for Base Sepolia testnet
-            const provider = new ethers.providers.JsonRpcProvider(
-                "https://sepolia.base.org" // or your preferred RPC URL
-            );
-
-            // Create wallet from private key
-            if (!PRIVATE_KEY) {
-                toast.error("Please enter a private key");
-                return;
-            }
-
-            const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-
-            // Check if the network is correct
-            const network = await provider.getNetwork();
-            console.log("Network chainId:", network.chainId);
-
-            if (network.chainId !== 8453 && network.chainId !== 84532) {
-                toast.error(
-                    "Provider is not connected to Base Mainnet or Base Sepolia Testnet."
-                );
-                return;
-            }
-
-            // Create contract factory with the wallet
-            const contractFactory = new ethers.ContractFactory(
-                result.abi,
-                result.bytecode,
-                wallet
-            );
-
-            console.log("Deploying contract...");
-            // Deploy with constructor arguments if they exist
-            const contract = await contractFactory.deploy(...constructorArgs);
-            await contract.deployed();
-
-            // Determine block explorer URL based on the network
-            const blockExplorerUrl =
-                network.chainId === 8453
-                    ? `https://basescan.org/address/${contract.address}`
-                    : `https://sepolia.basescan.org/address/${contract.address}`;
-
+    
+    const DeployContract = async ({ constructorArgs }) => {
+      console.log("Deploying contract...");
+      setIsModalOpen(false);
+      
+      try {
+        setIsDeploying(true);
+    
+        if (!PRIVATE_KEY) {
+          toast.error("Please enter a private key");
+          return;
+        }
+    
+        // You can get the selected chain from your UI state
+        const selectedChain = 'base-sepolia'; // or from state/props
+    
+        const deploymentData = await deployContract({
+          chain: selectedChain,
+          contractData: {
+            abi: result.abi,
+            bytecode: result.bytecode
+          },
+          constructorArgs,
+          privateKey: PRIVATE_KEY,
+          onSuccess: async (data) => {
             const solidityCode = agentResponse;
-            const fileName = `Contract_${contract.address}.sol`;
+            const fileName = `Contract_${data.contractAddress}.sol`;
             const solidityFilePath = await saveSolidityCode(solidityCode, fileName);
-
-            // Prepare and save contract data
-            const contractData = {
-                chainId: network.chainId,
-                contractAddress: contract.address,
-                abi: result.abi,
-                bytecode: result.bytecode,
-                blockExplorerUrl: blockExplorerUrl,
-                solidityFilePath: solidityFilePath,
-                deploymentDate: new Date().toISOString(),
-            };
-
+    
+            // Save additional contract data
             if (account && account?.address) {
-                await saveContractData(contractData, account.address);
-            } else {
-                console.error("User email not available");
+              await saveContractData({
+                ...data,
+                solidityFilePath
+              }, account.address);
             }
-
+    
             await setContractState((prevState) => ({
-                ...prevState,
-                address: contract.address,
-                isDeployed: true,
-                blockExplorerUrl: blockExplorerUrl,
+              ...prevState,
+              address: data.contractAddress,
+              isDeployed: true,
+              blockExplorerUrl: data.blockExplorerUrl
             }));
-
+    
             toast.success(
-                <div>
-                    Contract deployed successfully!
-                    <a
-                        href={blockExplorerUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block mt-2 text-black-500 hover:underline"
-                    >
-                        View on Block Explorer
-                    </a>
-                </div>,
-                {duration: 5000}
+              <div>
+                Contract deployed successfully!
+                <a
+                  href={data.blockExplorerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block mt-2 text-black-500 hover:underline"
+                >
+                  View on Block Explorer
+                </a>
+              </div>,
+              { duration: 5000 }
             );
-            console.log(`Contract deployed at: ${contract.address}`);
-        } catch (error) {
-            setError(error);
+          },
+          onError: (error) => {
             console.error("Error deploying contract:", error);
             if (error.code === "INVALID_ARGUMENT") {
-                toast.error("Invalid constructor arguments or private key");
+              toast.error("Invalid constructor arguments or private key");
             } else {
-                toast.error(`Error deploying contract: ${error.message}`);
+              toast.error(`Error deploying contract: ${error.message}`);
             }
-        } finally {
-            setIsDeploying(false);
-        }
+          }
+        });
+    
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsDeploying(false);
+      }
     };
 
     const handleCodeChange = (code) => {
