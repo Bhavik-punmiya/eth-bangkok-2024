@@ -6,8 +6,8 @@ const Layout = ({ children }) => {
   return (
     <ContractProvider>
       <div className="">
-        {/*<Sidebar />*/}
-        <main className="flex-1  p-4">{children}</main>
+        <Sidebar />
+        <main className="flex-1 py-4 pr-4 pl-20">{children}</main>
       </div>
     </ContractProvider>
   );

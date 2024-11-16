@@ -54,7 +54,7 @@ const Sidebar = () => {
     );
 
     return (
-        <div className="fixed top-16 left-0 h-screen w-fit m-0 flex flex-col bg-transparent  text-black  z-50 border-r border-gray-400">
+        <div className="fixed top-[4.5rem] left-0 h-screen w-fit m-0 flex flex-col bg-transparent  text-black  z-50 border-r border-gray-400">
             <SidebarIcon icon={<FaHome size="24" />} path="/" iconName="home" label="Home" />
             <SidebarIcon icon={<FaCode size="24" />} path={`/agent/${chainName}/code`} iconName="code" label="Code" />
             <SidebarIcon icon={<BsChatDotsFill size="24" />} path={`/agent/${chainName}/chat`} iconName="robot" label="Chat" />
