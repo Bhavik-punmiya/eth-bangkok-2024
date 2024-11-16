@@ -323,7 +323,10 @@ const Chat = ({
   };
 
   return (
-    <div>
+    <div
+      className="flex flex-col items-center justify-between h-full"
+      style={{ height: "calc(100vh - 200px)" }}
+    >
       <div className="">
         {messages.length > 0 ? (
           <div>
@@ -338,29 +341,14 @@ const Chat = ({
             <div ref={messagesEndRef} />
           </div>
         ) : (
-          <div className="text-center text-gray-400  text-3xl  my-auto flex mt-40 justify-center items-center">
-            <p>Answers will apper here!</p>
+          <div className="flex justify-center items-center text-center text-gray-400 text-3xl  my-auto mt-20">
+            <p>Chat History will appear here!</p>
           </div>
         )}
       </div>
       <form
         onSubmit={handleSubmit}
-        className="
-        flex 
-        justify-between 
-        items-center 
-        p-2 
-        bg-white 
-        shadow-md 
-        rounded-lg 
-        max-w-screen-xl 
-        mx-auto 
-        mt-2
-        fixed 
-        bottom-5
-        w-full
-        
-      "
+        className="flex justify-between items-center p-2 bg-white shadow-md rounded-lg mx-auto mt-2 w-full"
       >
         <input
           type="text"
@@ -368,7 +356,7 @@ const Chat = ({
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           placeholder={
-            inputDisabled ? "Finding answers..." : "Enter you question"
+            inputDisabled ? "Answering..." : "Enter you suggestion"
           }
           disabled={inputDisabled}
         />

@@ -18,9 +18,8 @@ export default function ChatPage() {
     <div className="h-full">
       <div className="flex gap-5 w-full px-5 justify-between items-center">
         <div className="flex flex-col  justify-center ">
-          <div className="font-bold text-2xl">Base Agent</div>
           <p className="">
-            Our agent knows just about everything there is to know about Base!
+            Describe and talk with your smart contract as if it were alive.
           </p>
         </div>
         {/* 
@@ -43,7 +42,7 @@ export default function ChatPage() {
           <WalletConnectButton /> 
         </div> */}
 
-        <SecondaryNavbar />
+        {/* <SecondaryNavbar /> */}
       </div>
       <div className="p-5 min-h-screen">
         <Chat />
