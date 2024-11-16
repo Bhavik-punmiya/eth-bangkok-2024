@@ -397,7 +397,7 @@ export default function Editor() {
                             </div>
                         )} */}
 
-            <ChatPage />
+            <ChatPage setAgentResponse={setAgentResponse} />
           </Card>
         </div>
       </div>
