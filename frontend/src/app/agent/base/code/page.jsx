@@ -16,7 +16,7 @@ import ConstructorArgsModal from "@/components/ConstructorArgsModal";
 import SecondaryNavbar from "@/components/SecondaryNavbar";
 import { deployContract } from "@/contracts";
 import { CHAIN_CONFIGS } from "@/utils/chains";
-import ChatPage from "../chat/page"
+import ChatPage from "../chat/page";
 
 export default function Editor() {
   const {
@@ -291,7 +291,7 @@ export default function Editor() {
           }}
         />
       )}
-      <div className="flex">
+      <div className="flex gap-2 ">
         {/*code editor part*/}
         <div className="w-1/2 flex flex-col">
           <Card className="flex-grow">
@@ -341,7 +341,7 @@ export default function Editor() {
           </Card>
         </div>
 
-        <div className="w-1/2 p-2">
+        <div className="w-1/2 ">
           <Card className="flex-grow h-full">
             {/* <div className="max-w-2xl bg-gray-100 p-4 rounded-lg shadow-md">
                             <div className="flex items-center space-x-4">

@@ -13,6 +13,16 @@ function App() {
       chatLink: "/agent/base/chat",
       codeLink: "/agent/base/code",
     },
+    {
+      name: "Polygon",
+      logo: "/chain/polygon-logo.png",
+      description:
+        "Enabling an infinitely scalable web of sovereign blockchains that feels like a single chain. Powered by ZK tech.",
+      backgroundColor: "bg-theme-purple-light",
+      buttonColor: "bg-theme-purple-dark",
+      chatLink: "/agent/polygon/chat",
+      codeLink: "/agent/polygon/code",
+    },
   ];
 
   return (
