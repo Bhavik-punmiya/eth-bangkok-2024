@@ -305,7 +305,7 @@ export default function Editor() {
 
               {/*compile and deploy buttons*/}
               {account?.isConnected && (
-                <div className="py-2">
+                <div className="flex items-center py-2">
                   <Button
                     color="default"
                     onClick={compileCode}

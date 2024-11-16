@@ -262,6 +262,25 @@ const Chat = ({
   // handleRunCompleted
   const handleRunCompleted = () => {
     setInputDisabled(false);
+    console.log("REPLACING THE CODE in messages array")
+    setMessages((prev)=>{
+      const updatedMessages = prev.map((message) => {
+        const text = message.text;
+        const codeBlockRegex = /```(?:\w+\n)?([\s\S]*?)```/g;
+    
+        // Replace code blocks with bold "code" string
+        const updatedText = text.replace(codeBlockRegex, "See the code in the editor");
+    
+        // Return updated message
+        return {
+          ...message,
+          text: updatedText,
+        };
+      });
+    
+      return updatedMessages;
+    
+    })
   };
 
   const handleReadableStream = (stream) => {
