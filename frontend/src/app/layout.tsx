@@ -11,7 +11,7 @@ const OnchainProviders = dynamic(() => import("@/utils/wagmi-provider"), {
   ssr: false,
 });
 export const metadata: Metadata = {
-  title: "Decentrix.AI",
+  title: "ContractAi",
   description: "Think ideas, not code",
 };
 

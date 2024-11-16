@@ -353,7 +353,7 @@ const Chat = ({
       className="flex flex-col items-center justify-between"
       style={{ height: "calc(100vh - 100px)" }}
     >
-      <div className="flex flex-col items-start overflow-scroll pl-5 w-full h-full">
+      <div className="flex flex-col items-start overflow-auto pl-5 w-full h-full">
         {messages.length > 0 ? (
           <div>
             {messages.map((msg, index) => (
@@ -367,8 +367,8 @@ const Chat = ({
             <div ref={messagesEndRef} />
           </div>
         ) : (
-          <div className="flex justify-center items-center text-center text-gray-400 text-3xl  my-auto mt-20">
-            <p>Chat History will appear here!</p>
+          <div className="flex justify-center items-center text-center text-gray-400 text-3xl w-full  my-auto mt-20">
+            <p className="w-full text-center">Chat History will appear here!</p>
           </div>
         )}
       </div>
