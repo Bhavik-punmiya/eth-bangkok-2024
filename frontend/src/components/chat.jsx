@@ -127,7 +127,6 @@ const Chat = ({
   const [threadId, setThreadId] = useState("");
   const [logo, setLogo] = useState("");
   const [name, setName] = useState("");
-  const [codeBlocks, setCodeBlocks] = useState("");
   const pathname = usePathname();
 
   // automatically scroll to bottom of chat
@@ -340,9 +339,7 @@ const Chat = ({
       const lastMessage = messages[messages.length - 1];
       if (lastMessage?.role === "assistant") {
         const code = extractCodeBlocks(lastMessage.text);
-        console.log("EXTRACTED ", code);
         if (code) {
-          setCodeBlocks(code);
           setAgentResponse(code);
         }
       }
