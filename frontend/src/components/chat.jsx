@@ -328,14 +328,14 @@ const Chat = ({
     const codeBlockRegex = /```(?:\w+\n)?([\s\S]*?)```/g;
     let match;
     while ((match = codeBlockRegex.exec(text)) !== null) {
-      if(match[1].includes("SPDX-License-Identifier")){
-        return match[1]
+      if (match[1].includes("SPDX-License-Identifier")) {
+        return match[1];
       }
     }
   };
 
   useEffect(() => {
-    if (messages.length > 0 && inputDisabled ) {
+    if (messages.length > 0 && inputDisabled) {
       const lastMessage = messages[messages.length - 1];
       console.log("last message is ", lastMessage);
       if (lastMessage?.role === "assistant") {
@@ -346,14 +346,14 @@ const Chat = ({
         }
       }
     }
-  }, [messages]);  
+  }, [messages]);
 
   return (
     <div
       className="flex flex-col items-center justify-between"
       style={{ height: "calc(100vh - 100px)" }}
     >
-      <div className="flex flex-col items-start overflow-scroll pl-5">
+      <div className="flex flex-col items-start overflow-scroll pl-5 w-full h-full">
         {messages.length > 0 ? (
           <div>
             {messages.map((msg, index) => (
