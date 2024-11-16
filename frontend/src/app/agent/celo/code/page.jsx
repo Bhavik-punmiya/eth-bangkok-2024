@@ -221,11 +221,17 @@ export default function Editor() {
 
       // Get the current network details
       const network = await provider.getNetwork();
-      console.log(`Connected to network: ${network.name} (Chain ID: ${network.chainId})`);
+      console.log(
+        `Connected to network: ${network.name} (Chain ID: ${network.chainId})`
+      );
 
       setIsDeploying(true);
 
-      const contractFactory = new ethers.ContractFactory(result.abi, result.bytecode, signer);
+      const contractFactory = new ethers.ContractFactory(
+        result.abi,
+        result.bytecode,
+        signer
+      );
       console.log("Deploying contract...");
 
       const contract = await contractFactory.deploy();
@@ -248,14 +254,14 @@ export default function Editor() {
         solidityFilePath: solidityFilePath,
         deploymentDate: new Date().toISOString(),
       };
-      const userData = '0x1'
+      const userData = "0x1";
       if (userData && userData.email) {
         await saveContractData(contractData, userData.email);
       } else {
-        await saveContractData(contractData, ' ');
+        await saveContractData(contractData, " ");
       }
 
-      await setContractState(prevState => ({
+      await setContractState((prevState) => ({
         ...prevState,
         address: contract.address,
         isDeployed: true,
@@ -267,13 +273,20 @@ export default function Editor() {
       toast.success(
         <div>
           Contract deployed successfully!
-          <a href={blockExplorerUrl} target="_blank" rel="noopener noreferrer" className="block mt-2 text-black-500 hover:underline">
+          <a
+            href={blockExplorerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mt-2 text-black-500 hover:underline"
+          >
             View on Block Explorer
           </a>
         </div>,
         { duration: 5000 }
       );
-      console.log(`Contract deployed at: ${contract.address} on ${network.name}`);
+      console.log(
+        `Contract deployed at: ${contract.address} on ${network.name}`
+      );
     } catch (error) {
       console.error("Error deploying contract:", error);
       toast.error(`Failed to deploy contract: ${error.message}`);
@@ -281,7 +294,6 @@ export default function Editor() {
       setIsDeploying(false);
     }
   };
-
 
   return (
     <div className="">
@@ -299,14 +311,7 @@ export default function Editor() {
         {/*code editor part*/}
         <div className="w-1/2 flex flex-col">
           <Card className="flex-grow">
-            <CardHeader className="flex justify-between items-center px-4 py-2">
-              <div className="flex items-center">
-                <div className="mr-4">
-                  <Avatar isBordered radius="md" src="/chain/celo-logo.png" />
-                </div>
-                <h2 className="text-xl font-bold">Celo Agent</h2>
-              </div>
-
+            <CardHeader className="flex justify-end items-center px-4 py-2">
               {/*compile and deploy buttons*/}
               {account?.isConnected && (
                 <div className="py-2">

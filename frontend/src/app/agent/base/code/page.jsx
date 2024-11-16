@@ -295,7 +295,7 @@ export default function Editor() {
         {/*code editor part*/}
         <div className="w-1/2 flex flex-col">
           <Card className="flex-grow">
-            <CardHeader className="flex justify-between items-center px-4 py-2">
+            <CardHeader className="flex justify-end items-center px-4 py-2">
               <div className="flex items-center">
                 <div className="mr-4">
                   <Avatar isBordered radius="md" src="/chain/base-logo.png" />
