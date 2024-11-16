@@ -17,11 +17,6 @@ export default function ChatPage() {
   return (
     <div className="h-full">
       <div className="flex gap-5 w-full px-5 justify-between items-center">
-        <div className="flex flex-col  justify-center ">
-          <p className="">
-            Describe and talk with your smart contract as if it were alive.
-          </p>
-        </div>
         {/* 
         <div className="flex items-center space-x-4 w-fit bg-gray-100 p-4 rounded-lg  shadow-md mx-auto">
           <Avatar isBordered radius="md" src="/chain/base-logo.png" />
@@ -44,7 +39,7 @@ export default function ChatPage() {
 
         {/* <SecondaryNavbar /> */}
       </div>
-      <div className="p-5 min-h-screen">
+      <div className="">
         <Chat />
       </div>
     </div>

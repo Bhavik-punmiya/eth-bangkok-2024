@@ -307,6 +307,7 @@ export default function Editor() {
                     color="default"
                     onClick={compileCode}
                     isLoading={isCompiling}
+                    className=""
                   >
                     {isCompiling ? "Compiling..." : "Compile"}
                   </Button>

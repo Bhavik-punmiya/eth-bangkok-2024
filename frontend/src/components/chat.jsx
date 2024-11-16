@@ -15,7 +15,7 @@ import { FaPaperPlane } from "react-icons/fa";
 // @ts-expect-error - no types for this yet
 const UserMessage = ({ text }) => {
   return (
-    <div className=" flex flex-row gap-3 items-start justify-start mt-10">
+    <div className=" flex flex-row gap-3 items-start justify-start mt-10 w-full">
       <div className=" flex items-center justify-center rounded-full w-10 h-10 bg-theme-purple ">
         <FaUser className="" />
       </div>
@@ -27,7 +27,7 @@ const UserMessage = ({ text }) => {
 const AssistantMessage = ({ text, logo, name }) => {
   // console.log(text);
   return (
-    <div className=" flex flex-row gap-3 items-start justify-start my-5">
+    <div className=" flex flex-row gap-3 items-start justify-start my-5 w-full">
       <div className="flex items-center gap-5">
         <Image
           src={logo}
@@ -126,6 +126,7 @@ const Chat = ({
   const [threadId, setThreadId] = useState("");
   const [logo, setLogo] = useState("");
   const [name, setName] = useState("");
+  const [codeBlocks, setCodeBlocks] = useState("");
   const pathname = usePathname();
 
   // automatically scroll to bottom of chat
@@ -258,7 +259,7 @@ const Chat = ({
     submitActionResult(runId, toolCallOutputs);
   };
 
-  // handleRunCompleted - re-enable the input form
+  // handleRunCompleted
   const handleRunCompleted = () => {
     setInputDisabled(false);
   };
@@ -322,12 +323,37 @@ const Chat = ({
     });
   };
 
+  // Utility to extract code blocks from text
+  const extractCodeBlocks = (text) => {
+    const codeBlockRegex = /```(?:\w+\n)?([\s\S]*?)```/g;
+    let match;
+    while ((match = codeBlockRegex.exec(text)) !== null) {
+      if(match[1].includes("SPDX-License-Identifier")){
+        return match[1]
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (messages.length > 0 && inputDisabled ) {
+      const lastMessage = messages[messages.length - 1];
+      console.log("last message is ", lastMessage);
+      if (lastMessage?.role === "assistant") {
+        const code = extractCodeBlocks(lastMessage.text);
+        console.log("EXTRACTED ", code);
+        if (code) {
+          setCodeBlocks((prevCodeBlocks) => [...prevCodeBlocks, ...code]);
+        }
+      }
+    }
+  }, [messages]);  
+
   return (
     <div
-      className="flex flex-col items-center justify-between h-full"
-      style={{ height: "calc(100vh - 200px)" }}
+      className="flex flex-col items-center justify-between"
+      style={{ height: "calc(100vh - 100px)" }}
     >
-      <div className="">
+      <div className="flex flex-col items-start overflow-scroll pl-5">
         {messages.length > 0 ? (
           <div>
             {messages.map((msg, index) => (
@@ -355,9 +381,7 @@ const Chat = ({
           className={styles.input}
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder={
-            inputDisabled ? "Answering..." : "Enter you suggestion"
-          }
+          placeholder={inputDisabled ? "Answering..." : "Enter you suggestion"}
           disabled={inputDisabled}
         />
         <button
