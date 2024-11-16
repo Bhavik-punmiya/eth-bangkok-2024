@@ -1,6 +1,6 @@
-import { CoinbaseWalletSDK } from "@coinbase/wallet-sdk";
+import { createCoinbaseWalletSDK } from "@coinbase/wallet-sdk";
 
-export const sdk = new CoinbaseWalletSDK({
-  appName: "ContractAi",
+export const sdk = createCoinbaseWalletSDK({
+  appName: "My App",
   appChainIds: [84532],
 });
