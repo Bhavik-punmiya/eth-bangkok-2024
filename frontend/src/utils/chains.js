@@ -18,12 +18,41 @@ export const CHAIN_CONFIGS = {
       explorerUrl: 'https://etherscan.io',
       isEVM: true
     },
-    // Non-EVM Chains example
-    'solana': {
-      cluster: 'mainnet-beta',
-      rpcUrl: 'https://api.mainnet-beta.solana.com',
-      explorerUrl: 'https://explorer.solana.com',
-      isEVM: false
+    'mantle-mainnet': {
+      chainId: 5000,
+      rpcUrl: 'https://rpc.mantle.xyz',
+      explorerUrl: 'https://explorer.mantle.xyz',
+      isEVM: true
+    },
+    'mantle-testnet': {
+      chainId: 5001,
+      rpcUrl: 'https://rpc.testnet.mantle.xyz',
+      explorerUrl: 'https://explorer.testnet.mantle.xyz',
+      isEVM: true
+    },
+    'morph-mainnet': {
+      chainId: 2818,
+      rpcUrl: 'https://rpc-quicknode.morphl2.io',
+      explorerUrl: 'https://explorer.morphl2.io',
+      isEVM: true
+    },
+    'morph-testnet': {
+      chainId: 2710,
+      rpcUrl: 'https://rpc-testnet.morphl2.io',
+      explorerUrl: 'https://explorer-holesky.morphl2.io',
+      isEVM: true
+    },
+    'celo-mainnet': {
+      chainId: 42220,
+      rpcUrl: 'https://forno.celo.org',
+      explorerUrl: 'https://explorer.celo.org',
+      isEVM: true
+    },
+    'celo-alfajores': {
+      chainId: 44787,
+      rpcUrl: 'https://alfajores-forno.celo-testnet.org',
+      explorerUrl: 'https://alfajores-blockscout.celo-testnet.org',
+      isEVM: true
     }
   };
   
