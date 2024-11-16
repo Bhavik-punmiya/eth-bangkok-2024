@@ -397,7 +397,7 @@ const Chat = ({
           </div>
         ) : (
           <div className="flex justify-center items-center text-center text-gray-400 text-3xl w-full  my-auto mt-20">
-            <p className="w-full text-center">Chat History will appear here!</p>
+            <p className="w-full text-center">Imagination is the limit!</p>
           </div>
         )}
       </div>
@@ -410,7 +410,9 @@ const Chat = ({
           className={styles.input}
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder={inputDisabled ? "Answering..." : "Enter you suggestion"}
+          placeholder={
+            inputDisabled ? "Answering..." : "Want do you want to build?"
+          }
           disabled={inputDisabled}
         />
         <button

@@ -53,20 +53,20 @@ function App() {
       logo: "/chain/morph-logo.jpg",
       description:
         "Morph is an innovative blockchain solution for customizable, interoperable smart contracts.",
-        backgroundColor: "bg-theme-gray-light",
-        buttonColor: "bg-theme-gray-dark",
+      backgroundColor: "bg-theme-gray-light",
+      buttonColor: "bg-theme-gray-dark",
       codeLink: "/agent/morph/code",
     },
   ];
 
-
   return (
     <main className="w-full px-10">
       <div className="w-full px-5 pt-36 flex flex-col justify-center items-center gap-8">
-        <div className="text-4xl md:text-6xl mx-auto text-center">
-          Think <span className="">Ideas</span>, Not Code.
+        <div className="text-4xl md:text-6xl mx-auto text-center capitalize leading-3">
+          Why just <span>generate</span>,
+          <br /> when you can also deploy?
         </div>
-        <button
+        {/* <button
           onClick={() => {
             document
               .getElementById("agents")
@@ -75,18 +75,18 @@ function App() {
           className="py-3 px-5 text-white bg-theme-dark text rounded-full mx-auto"
         >
           Get Started
-        </button>
+        </button> */}
         <div className="w-[90%] border mt-2 border-theme-dark"></div>
         <div className="text-lg md:text-3xl font-light text-center">
-          Empowering Web2 developers to transition into Web3 with our AI-driven
-          platform. <br />
-          Describe your needs, and our AI will handle the rest.
+          The only platform you need to generate and deploy <s>contracts</s>{" "}
+          ideas,
+          <br /> on chain! 🚀
         </div>
       </div>
 
       <div className="bg-theme-off-white-light rounded-xl p-10 w-full mt-24">
         <div className="w-full text-center text-4xl mb-10" id="agents">
-          <span>Choose an agent</span>
+          <span>Where do you want your ideas to live?</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">

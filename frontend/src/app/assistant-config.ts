@@ -6,6 +6,7 @@ export const assistantIds = {
   polygon: process.env.NEXT_PUBLIC_POLYGON_ASSISTANT_ID || "",
   morph: process.env.NEXT_PUBLIC_MORPH_ASSISTANT_ID || "",
   celo: process.env.NEXT_PUBLIC_CELO_ASSISTANT_ID || "",
+  flow: process.env.NEXT_PUBLIC_FLOW_ASSISTANT_ID || "",
 };
 
 export const getAssistantId = (
@@ -16,7 +17,8 @@ export const getAssistantId = (
     | "mantle"
     | "polygon"
     | "morph"
-    | "celo" = "base"
+    | "celo"
+    | "flow" = "base"
 ): string => {
   return assistantIds[type];
 };
