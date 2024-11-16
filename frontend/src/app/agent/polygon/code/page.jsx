@@ -232,7 +232,7 @@ export default function Editor() {
       await contract.deployed();
 
       // Get the block explorer URL (if available)
-      let blockExplorerUrl = `https://alfajores-blockscout.celo-testnet.org/address/${contract.address}`;
+      let blockExplorerUrl = `https://amoy.polygonscan.com/address/${contract.address}`;
 
       const solidityCode = agentResponse;
       const fileName = `Contract_${contract.address}.sol`;
@@ -240,7 +240,7 @@ export default function Editor() {
 
       const contractData = {
         chainId: network.chainId,
-        networkName: "Celo Testnet (Alfajores)",
+        networkName: "Polygon Amoy Testnet",
         contractAddress: contract.address,
         abi: result.abi,
         bytecode: result.bytecode,
@@ -301,10 +301,10 @@ export default function Editor() {
           <Card className="flex-grow">
             <CardHeader className="flex justify-between items-center px-4 py-2">
               <div className="flex items-center">
-                <div className="mr-4">
-                  <Avatar isBordered radius="md" src="/chain/celo-logo.png" />
+                <div className="mr-4 p-2 bg-white">
+                  <Avatar isBordered radius="md" src="/chain/polygon-logo.png" />
                 </div>
-                <h2 className="text-xl font-bold">Celo Agent</h2>
+                <h2 className="text-xl font-bold">Polygon Agent</h2>
               </div>
 
               {/*compile and deploy buttons*/}
