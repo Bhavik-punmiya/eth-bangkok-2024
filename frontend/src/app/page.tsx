@@ -7,23 +7,58 @@ function App() {
       name: "Base",
       logo: "/chain/base-logo.png",
       description:
-        "Base is a secure, low-cost, builder-friendly Ethereum L2 built to bring the next billion users onchain.",
+        "Base is a secure, low-cost, builder-friendly Ethereum L2, aiming to onboard the next billion users on-chain.",
       backgroundColor: "bg-theme-green-light",
       buttonColor: "bg-theme-green-dark",
-      chatLink: "/agent/base/chat",
       codeLink: "/agent/base/code",
     },
     {
       name: "Mantle",
       logo: "/chain/mantle-logo.png",
       description:
-        "With Mantle Network, an Ethereum rollup, Mantle Treasury and a token holder governed roadmap for products and initiatives.",
+        "Mantle is an Ethereum layer 2 solution built for scalability, leveraging Optimistic Rollups technology.",
       backgroundColor: "bg-theme-purple-light",
       buttonColor: "bg-theme-purple-dark",
-      chatLink: "/agent/mantle/chat",
       codeLink: "/agent/mantle/code",
     },
+    {
+      name: "Flow",
+      logo: "/chain/flow-logo.png",
+      description:
+        "Flow is a fast, decentralized, developer-friendly blockchain designed for gaming and digital collectibles.",
+      backgroundColor: "bg-theme-gray-light",
+      buttonColor: "bg-theme-gray-dark",
+      codeLink: "/agent/flow/code",
+    },
+    {
+      name: "Polygon",
+      logo: "/chain/polygon-logo.png",
+      description:
+        "Polygon provides scalable, secure, and instant transactions using sidechains on the Ethereum network.",
+      backgroundColor: "bg-theme-green-light",
+      buttonColor: "bg-theme-green-dark",
+      codeLink: "/agent/polygon/code",
+    },
+    {
+      name: "Celo",
+      logo: "/chain/celo-logo.png",
+      description:
+        "Celo is a mobile-first blockchain platform focused on financial inclusion and decentralized applications.",
+      backgroundColor: "bg-theme-purple-light",
+      buttonColor: "bg-theme-purple-dark",
+      codeLink: "/agent/celo/code",
+    },
+    {
+      name: "Morph",
+      logo: "/chain/morph-logo.jpg",
+      description:
+        "Morph is an innovative blockchain solution for customizable, interoperable smart contracts.",
+        backgroundColor: "bg-theme-gray-light",
+        buttonColor: "bg-theme-gray-dark",
+      codeLink: "/agent/morph/code",
+    },
   ];
+
 
   return (
     <main className="w-full px-10">
