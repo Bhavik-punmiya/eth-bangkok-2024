@@ -14,14 +14,14 @@ function App() {
       codeLink: "/agent/base/code",
     },
     {
-      name: "Polygon",
-      logo: "/chain/polygon-logo.png",
+      name: "Mantle",
+      logo: "/chain/mantle-logo.png",
       description:
-        "Enabling an infinitely scalable web of sovereign blockchains that feels like a single chain. Powered by ZK tech.",
+        "With Mantle Network, an Ethereum rollup, Mantle Treasury and a token holder governed roadmap for products and initiatives.",
       backgroundColor: "bg-theme-purple-light",
       buttonColor: "bg-theme-purple-dark",
-      chatLink: "/agent/polygon/chat",
-      codeLink: "/agent/polygon/code",
+      chatLink: "/agent/mantle/chat",
+      codeLink: "/agent/mantle/code",
     },
   ];
 
