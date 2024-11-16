@@ -15,7 +15,7 @@ import { FaPaperPlane } from "react-icons/fa";
 // @ts-expect-error - no types for this yet
 const UserMessage = ({ text }) => {
   return (
-    <div className=" flex flex-row gap-3 items-start justify-start mt-10 w-full">
+    <div className=" flex flex-row gap-3 items-start justify-start mt-5 w-full">
       <div className=" flex items-center justify-center rounded-full w-10 h-10 bg-theme-purple ">
         <FaUser className="" />
       </div>
@@ -119,7 +119,7 @@ const Message = ({ role, text, logo, name }) => {
 
 const Chat = ({
   functionCallHandler = () => Promise.resolve(""), // default to return empty string
-  setAgentResponse
+  setAgentResponse,
 }) => {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
@@ -262,25 +262,27 @@ const Chat = ({
   // handleRunCompleted
   const handleRunCompleted = () => {
     setInputDisabled(false);
-    console.log("REPLACING THE CODE in messages array")
-    setMessages((prev)=>{
+    console.log("REPLACING THE CODE in messages array");
+    setMessages((prev) => {
       const updatedMessages = prev.map((message) => {
         const text = message.text;
         const codeBlockRegex = /```(?:\w+\n)?([\s\S]*?)```/g;
-    
+
         // Replace code blocks with bold "code" string
-        const updatedText = text.replace(codeBlockRegex, "See the code in the editor");
-    
+        const updatedText = text.replace(
+          codeBlockRegex,
+          "**See the code in the editor**"
+        );
+
         // Return updated message
         return {
           ...message,
           text: updatedText,
         };
       });
-    
+
       return updatedMessages;
-    
-    })
+    });
   };
 
   const handleReadableStream = (stream) => {
@@ -367,10 +369,20 @@ const Chat = ({
 
   return (
     <div
-      className="flex flex-col items-center justify-between"
+      className="flex flex-col items-center "
       style={{ height: "calc(100vh - 100px)" }}
     >
-      <div className="flex flex-col items-start overflow-auto pl-5 w-full h-full">
+      <div className="w-full justify-center flex gap-3 items-center mt-5">
+        <Image
+          src={logo}
+          className="rounded-full"
+          alt={name}
+          width={30}
+          height={30}
+        />
+        <p className="text-xl font-bold">{name} Agent</p>
+      </div>
+      <div className="flex flex-col items-start overflow-auto pl-5 w-full h-full text-sm">
         {messages.length > 0 ? (
           <div>
             {messages.map((msg, index) => (
@@ -391,7 +403,7 @@ const Chat = ({
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex justify-between items-center p-2 bg-white shadow-md rounded-lg mx-auto mt-2 w-full"
+        className="flex justify-between items-center p-2 bg-white shadow-md rounded-lg mx-auto  w-full"
       >
         <input
           type="text"

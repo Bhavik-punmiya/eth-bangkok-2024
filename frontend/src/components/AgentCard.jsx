@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaCode } from "react-icons/fa";
 import { IoMdChatbubbles } from "react-icons/io";
-import { FaPaperPlane } from "react-icons/fa";  // Changed to Feather icons' send icon
+import { FaPaperPlane } from "react-icons/fa"; // Changed to Feather icons' send icon
 
 const AgentCard = ({ agent }) => {
   const {
@@ -43,11 +43,12 @@ const AgentCard = ({ agent }) => {
             onClick={(e) => {
               e.stopPropagation();
               // Add your send functionality here
+              handleCardClick();
             }}
             className={`${buttonColor} text-white p-2 rounded-lg hover:scale-110 transition-all duration-200`}
             title="Send"
           >
-          <FaPaperPlane />  {/* Added rotate-45 to point top-right */}
+            <FaPaperPlane /> {/* Added rotate-45 to point top-right */}
           </button>
         </div>
         <div className="font-light text-lg mt-3">{description}</div>
