@@ -6,7 +6,7 @@ import { useAccount } from "wagmi";
 import Chat from "@/components/chat";
 import SecondaryNavbar from "@/components/SecondaryNavbar";
 
-export default function ChatPage() {
+export default function ChatPage({setAgentResponse}) {
   const account = useAccount();
 
   const shortenAddress = (address) => {
@@ -40,7 +40,7 @@ export default function ChatPage() {
         {/* <SecondaryNavbar /> */}
       </div>
       <div className="">
-        <Chat />
+        <Chat setAgentResponse={setAgentResponse} />
       </div>
     </div>
   );

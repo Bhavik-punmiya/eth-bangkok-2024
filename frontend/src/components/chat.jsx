@@ -119,6 +119,7 @@ const Message = ({ role, text, logo, name }) => {
 
 const Chat = ({
   functionCallHandler = () => Promise.resolve(""), // default to return empty string
+  setAgentResponse
 }) => {
   const [userInput, setUserInput] = useState("");
   const [messages, setMessages] = useState([]);
@@ -337,12 +338,12 @@ const Chat = ({
   useEffect(() => {
     if (messages.length > 0 && inputDisabled) {
       const lastMessage = messages[messages.length - 1];
-      console.log("last message is ", lastMessage);
       if (lastMessage?.role === "assistant") {
         const code = extractCodeBlocks(lastMessage.text);
         console.log("EXTRACTED ", code);
         if (code) {
-          setCodeBlocks((prevCodeBlocks) => [...prevCodeBlocks, ...code]);
+          setCodeBlocks(code);
+          setAgentResponse(code);
         }
       }
     }
