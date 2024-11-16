@@ -23,12 +23,11 @@ const Sidebar = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleIconClick = (icon, path) => {
+  const handleIconClick = (icon) => {
     if (icon === "contract") {
       setActiveIcon(activeIcon === icon ? null : icon);
     } else {
       setActiveIcon(null);
-      router.push(path);
     }
   };
 
@@ -74,7 +73,7 @@ const Sidebar = () => {
 
         <FaChevronLeft
           className=" cursor-pointer"
-          onClick={() => handleIconClick()}
+          onClick={() => handleIconClick(null)}
           size="20"
         />
       </div>
@@ -83,7 +82,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className="fixed top-[4.5rem] left-0 w-fit m-0 flex flex-col bg-transparent  text-black  z-50 border-r border-gray-400"
+      className="fixed top-[4.5rem] left-0 w-fit m-0 flex flex-col bg-theme-purple-light  text-black  z-50 shadow-lg"
       style={{ height: "calc(100vh - 50px)" }}
     >
       {/* <SidebarIcon icon={<FaHome size="24" />} path="/" iconName="home" label="Home" />
@@ -114,12 +113,14 @@ const Sidebar = () => {
           )}
         </NestedSidebar>
       ) : (
-        <div className="flex h-full items-center bg-white">
-          <FaChevronRight
-            className=" cursor-pointer"
-            onClick={() => handleIconClick("contract")}
-            size="20"
-          />
+        <div
+          className="flex h-full items-center cursor-pointer  relative w-3 bg-theme-purple-light"
+          onClick={() => handleIconClick("contract")}
+        >
+          <div className="absolute top-10 whitespace-nowrap p-2 rounded-full flex gap-3 items-center justify-center bg-theme-purple-light">
+            <p className="">Interact with contract</p>
+            <FaChevronRight className=" " size="10" />
+          </div>
         </div>
       )}
 

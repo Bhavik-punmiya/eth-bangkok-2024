@@ -297,10 +297,9 @@ export default function Editor() {
           <Card className="flex-grow">
             <CardHeader className="flex justify-between items-center px-4 py-2">
               <div className="flex items-center">
-              <div className="mr-4">
+                <div className="mr-4">
                   <Avatar isBordered radius="md" src="/chain/base-logo.png" />
                 </div>
-                <h2 className="text-xl font-bold">Base Agent</h2>
               </div>
 
               {/*compile and deploy buttons*/}

@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <ContractProvider>
       <div className="">
         <Sidebar />
-        <main className="flex-1 py-4 pr-4 pl-20">{children}</main>
+        <main className="flex-1 py-4 p-4">{children}</main>
       </div>
     </ContractProvider>
   );
