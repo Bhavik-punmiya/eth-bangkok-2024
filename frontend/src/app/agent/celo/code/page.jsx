@@ -78,6 +78,7 @@ export default function Editor() {
       });
       setResult(response.data);
       // console.log("Compilation result:---------------", response.data);
+      toast.success("Contract compiled successfully!");
       if (response.data.status === "success") {
         setContractState((prevState) => ({
           ...prevState,
@@ -88,6 +89,7 @@ export default function Editor() {
       }
     } catch (error) {
       console.error("Error compiling contract:", error.response.data);
+      toast.error("Error compiling contract!");
       setResult(error.response.data);
     } finally {
       setCompiling(false);

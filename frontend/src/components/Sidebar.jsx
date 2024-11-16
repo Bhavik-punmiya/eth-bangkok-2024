@@ -117,7 +117,7 @@ const Sidebar = () => {
           className="flex h-full items-center cursor-pointer  relative w-3 bg-theme-purple-light"
           onClick={() => handleIconClick("contract")}
         >
-          <div className="absolute top-10 whitespace-nowrap p-2 rounded-full flex gap-3 items-center justify-center bg-theme-purple-light">
+          <div className="absolute top-7 whitespace-nowrap p-2 rounded-full flex gap-3 items-center justify-center bg-theme-purple-light">
             <p className="">Interact with contract</p>
             <FaChevronRight className=" " size="10" />
           </div>
