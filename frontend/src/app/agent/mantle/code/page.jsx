@@ -171,7 +171,7 @@ export default function Editor() {
       await contract.deployed();
 
       // Get the block explorer URL (if available)
-      let blockExplorerUrl = `https://explorer.testnet.mantle.xyz/address/${contract.address}`;
+      let blockExplorerUrl = `https://explorer.testnet.mantle.xyz/address/${contract.address}`; //hosted by blockscout
 
       const solidityCode = agentResponse;
       const fileName = `Contract_${contract.address}.sol`;

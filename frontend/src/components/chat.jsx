@@ -372,7 +372,7 @@ const Chat = ({
       className="flex flex-col items-center "
       style={{ height: "calc(100vh - 100px)" }}
     >
-      <div className="w-full justify-center flex gap-3 items-center mt-5">
+      <div className="w-full justify-center flex gap-3 items-center mt-5 mb-2">
         <Image
           src={logo}
           className="rounded-full"
