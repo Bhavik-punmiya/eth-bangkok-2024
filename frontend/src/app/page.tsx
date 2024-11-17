@@ -63,16 +63,8 @@ function App() {
     <main className="w-full px-10">
       <div className="w-full px-5 pt-36 flex flex-col justify-center items-center gap-8">
         <div className="text-4xl md:text-6xl mx-auto text-center capitalize leading-3">
-          Why just generate
-          <br /> when you can also{" "}
-          <span className="text-theme-purple-dark uppercase underline">
-            audit
-          </span>{" "}
-          and{" "}
-          <span className="text-theme-purple-dark uppercase underline">
-            deploy
-          </span>
-          ?
+          Why just generate,
+          <br /> when you can also <u>audit</u> and <u>deploy</u>?
         </div>
         {/* <button
           onClick={() => {

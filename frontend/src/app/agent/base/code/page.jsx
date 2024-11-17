@@ -43,7 +43,6 @@ export default function Editor() {
   const BACKEND_URL =
     "https://msl8g5vbv6.execute-api.ap-south-1.amazonaws.com/prod/api/contract/compile";
   // const BACKEND_URL = "localhost:8080/api/compile";
-  const BASE_SEPOLIA_CHAIN_ID = 84532;
 
   useEffect(() => {
     const loadedCode = localStorage.getItem("loadedContractCode");
