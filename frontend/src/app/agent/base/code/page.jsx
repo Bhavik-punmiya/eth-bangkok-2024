@@ -17,6 +17,7 @@ import SecondaryNavbar from "@/components/SecondaryNavbar";
 import { deployContract } from "@/contracts";
 import { CHAIN_CONFIGS } from "@/utils/chains";
 import ChatPage from "../chat/page";
+import AuditModal from "@/components/AuditModal"; // Create this file with the code above
 
 export default function Editor() {
   const {
@@ -34,6 +35,8 @@ export default function Editor() {
   const [isDeploying, setIsDeploying] = useState(false);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAuditing, setIsAuditing] = useState(false);
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
 
   const account = useAccount();
 
@@ -180,79 +183,6 @@ export default function Editor() {
     setAgentResponse(code);
     localStorage.setItem("loadedContractCode", code);
   };
-  setAgentResponse;
-  //useEffect to monitor sugeestion changes and compile code
-  const RenderResult = () => {
-    const [ABIcopied, setABICopied] = useState(false);
-    const [Bytecopied, setByteCopied] = useState(false);
-
-    const copyToClipboard = (text, ele) => {
-      console.log(contractState);
-      navigator.clipboard.writeText(text);
-    };
-
-    if (!result) {
-      return (
-        <div className="bg-gray-100 border border-gray-400 text-black p-4 rounded">
-          Compilation results will appear here.
-        </div>
-      );
-    }
-    //show the compilation error
-    if (result.status === "error") {
-      const error = result.message;
-      return (
-        <div>
-          <div className="bg-red-100 border border-red-400 text-red-700 p-4 rounded">
-            <h3 className="font-bold">Compilation failed!</h3>
-            <p>{error}</p>
-          </div>
-        </div>
-      );
-    }
-
-    if (result.status === "success") {
-      return (
-        <div>
-          <div className="bg-green-100 border border-green-400 text-green-700 p-4 rounded">
-            <h3 className="font-bold">Compilation Successful!</h3>
-          </div>
-
-          {/*copy abi and bytecode*/}
-          {/*<div className=" p-4 rounded flex items-center space-x-4 justify-end my-2">*/}
-          {/*   <Button*/}
-          {/*     color="primary"*/}
-          {/*     className="flex gap-2 items-center"*/}
-          {/*     onClick={() => {*/}
-          {/*       copyToClipboard(result.bytecode, 1);*/}
-          {/*     }}*/}
-          {/*   >*/}
-          {/*     <h4 className="">*/}
-          {/*       {Bytecopied ? "Bytecode Copied" : "Copy Bytecode"}*/}
-          {/*     </h4>*/}
-          {/*     {Bytecopied ? <FaClipboardCheck /> : <FaClipboard />}*/}
-          {/*   </Button>*/}
-          {/*   <Button*/}
-          {/*     color="primary"*/}
-          {/*     className="flex gap-2 items-center"*/}
-          {/*     onClick={() => {*/}
-          {/*       copyToClipboard(JSON.stringify(result.abi), 0);*/}
-          {/*     }}*/}
-          {/*   >*/}
-          {/*     <h4 className="">{ABIcopied ? "ABI Copied" : "Copy ABI"}</h4>*/}
-          {/*     {ABIcopied ? <FaClipboardCheck /> : <FaClipboard />}*/}
-          {/*   </Button>*/}
-          {/* </div>*/}
-        </div>
-      );
-    }
-
-    return (
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 p-4 rounded">
-        Error while compilation!.
-      </div>
-    );
-  };
 
   const handleDeployContract = async () => {
     console.log("Deploying contract...");
@@ -281,8 +211,32 @@ export default function Editor() {
     });
   };
 
+  //audit functions
+  const auditCode = async () => {
+    console.log("Auditing code...");
+    setIsAuditModalOpen(true);
+  };
+
+  const handleAuditSelection = (method) => {
+    if (method === "agent") {
+      // Handle agent audit
+      console.log("Starting agent audit...");
+      // Add your agent audit logic here
+    } else if (method === "spearbit") {
+      // Handle SpearBit audit
+      console.log("Starting SpearBit audit...");
+      // Add your SpearBit audit logic here
+    }
+  };
+
   return (
     <div className="">
+      <AuditModal
+        isOpen={isAuditModalOpen}
+        onClose={() => setIsAuditModalOpen(false)}
+        onSelectOption={handleAuditSelection}
+        contractCode={agentResponse}
+      />
       <Toaster />
       {isModalOpen && (
         <ConstructorArgsModal
@@ -298,15 +252,17 @@ export default function Editor() {
         <div className="w-1/2 flex flex-col">
           <Card className="flex-grow">
             <CardHeader className="flex justify-end items-center px-4 py-2">
-              <div className="flex items-center">
-                <div className="mr-4">
-                  <Avatar isBordered radius="md" src="/chain/base-logo.png" />
-                </div>
-              </div>
-
               {/*compile and deploy buttons*/}
               {account?.isConnected && (
-                <div className="flex items-center py-2">
+                <div className="flex items-center py-2 gap-2">
+                  <Button
+                    color="default"
+                    onClick={auditCode}
+                    isLoading={isAuditing}
+                    className=""
+                  >
+                    {isCompiling ? "Auditing..." : "Audit contract"}
+                  </Button>
                   <Button
                     color="default"
                     onClick={compileCode}
@@ -319,7 +275,7 @@ export default function Editor() {
                     color="success"
                     onClick={handleDeployContract}
                     isLoading={isDeploying}
-                    className="ml-4"
+                    className=""
                   >
                     {isDeploying ? "Deploying..." : "Deploy"}
                   </Button>
@@ -345,62 +301,9 @@ export default function Editor() {
           </Card>
         </div>
 
+        {/*chat part*/}
         <div className="w-1/2 ">
           <Card className="flex-grow h-full">
-            {/* <div className="max-w-2xl bg-gray-100 p-4 rounded-lg shadow-md">
-                            <div className="flex items-center space-x-4">
-                                <Avatar isBordered radius="md" src="/chain/base-logo.png"/>
-                                <div className="flex-grow">
-                                    {account?.isConnected ? (
-                                        <div className="flex items-center justify-between">
-                      <span className="text-green-600 font-semibold">
-                        Connected
-                      </span>
-                                        </div>
-                                    ) : (
-                                        <span className="text-gray-600">Not connected</span>
-                                    )}
-                                </div>
-                                <SecondaryNavbar/>
-                            </div>
-                        </div>
-                        <div className="my-3 h-48 mb-14">
-                            <h1 className="font-bold my-2">Describe your smart contract</h1>
-                            <textarea
-                                value={userPrompt}
-                                onChange={(e) => setUserPrompt(e.target.value)}
-                                className="w-full h-full p-4 rounded-xl border"
-                                placeholder="E.g. I want to create a smart contract that allows users to create a token"
-                            />
-                        </div>
-
-                        <div className="max-w-xl">
-                            {account?.isConnected ? (
-                                <Button
-                                    disabled={inputDisabled}
-                                    onClick={() => handleRunAgent(userPrompt)}
-                                    color="primary"
-                                >
-                                    {inputDisabled ? progressMessage : "Generate code"}
-                                </Button>
-                            ) : (
-                                <WalletConnectButton text="Connect Wallet to Generate Code"/>
-                            )}
-                        </div>
-
-                        <div className="my-5">
-                            <RenderResult/>
-                        </div>
-                        {account?.isConnected ? (
-                            <ContractInteraction currChainId={BASE_SEPOLIA_CHAIN_ID}/>
-                        ) : (
-                            <div className="text-gray-600 ">
-                                <p className="p-2 ">
-                                    Please connect your wallet to compile and deploy the contract
-                                </p>
-                            </div>
-                        )} */}
-
             <ChatPage setAgentResponse={setAgentResponse} />
           </Card>
         </div>

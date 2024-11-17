@@ -9,7 +9,7 @@ function Footer(props) {
       <div className="font-bold ">ContractAi © 2024</div>
       <div className="flex flex-row gap-5 items-center">
         <Link
-          href="https://github.com/Bhavik-punmiya/Decentrix-AI-ETH-Online-2024"
+          href="https://github.com/Bhavik-punmiya/eth-bangkok-2024"
           className=""
         >
           <FaGithub />

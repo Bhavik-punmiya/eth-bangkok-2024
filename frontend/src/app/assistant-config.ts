@@ -7,6 +7,7 @@ export const assistantIds = {
   morph: process.env.NEXT_PUBLIC_MORPH_ASSISTANT_ID || "",
   celo: process.env.NEXT_PUBLIC_CELO_ASSISTANT_ID || "",
   flow: process.env.NEXT_PUBLIC_FLOW_ASSISTANT_ID || "",
+  auditor: process.env.NEXT_PUBLIC_AUDITOR_ASSISTANT_ID || "",
 };
 
 export const getAssistantId = (
@@ -18,7 +19,8 @@ export const getAssistantId = (
     | "polygon"
     | "morph"
     | "celo"
-    | "flow" = "base"
+    | "flow"
+    | "auditor" = "base"
 ): string => {
   return assistantIds[type];
 };

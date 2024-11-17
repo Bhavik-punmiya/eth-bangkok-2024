@@ -63,8 +63,16 @@ function App() {
     <main className="w-full px-10">
       <div className="w-full px-5 pt-36 flex flex-col justify-center items-center gap-8">
         <div className="text-4xl md:text-6xl mx-auto text-center capitalize leading-3">
-          Why just <span>generate</span>,
-          <br /> when you can also deploy?
+          Why just generate
+          <br /> when you can also{" "}
+          <span className="text-theme-purple-dark uppercase underline">
+            audit
+          </span>{" "}
+          and{" "}
+          <span className="text-theme-purple-dark uppercase underline">
+            deploy
+          </span>
+          ?
         </div>
         {/* <button
           onClick={() => {
@@ -78,15 +86,17 @@ function App() {
         </button> */}
         <div className="w-[90%] border mt-2 border-theme-dark"></div>
         <div className="text-lg md:text-3xl font-light text-center">
-          The only platform you need to generate and deploy <s>contracts</s>{" "}
-          ideas,
+          The only platform you need to generate, deploy and audit{" "}
+          <s>contracts</s> ideas,
           <br /> on chain! 🚀
         </div>
       </div>
 
       <div className="bg-theme-off-white-light rounded-xl p-10 w-full mt-24">
         <div className="w-full text-center text-4xl mb-10" id="agents">
-          <span>Where do you want your ideas to live?</span>
+          <span>
+            Where do you want your <s>contract</s> idea to live?
+          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
